@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class LegalCaseResolver implements GraphQLQueryResolver, GraphQLMutationResolver {
@@ -39,8 +40,8 @@ public class LegalCaseResolver implements GraphQLQueryResolver, GraphQLMutationR
         return repository.save(legalCase);
     }
 
-    public LegalCase createLegalCase(LegalCase legalCase) {
-        return repository.save(legalCase);
+    public void createLegalCase(LegalCase legalCase) {
+        repository.save(legalCase);
     }
 
     public LegalCase updateLegalCase(String id, LegalCase legalCase) {

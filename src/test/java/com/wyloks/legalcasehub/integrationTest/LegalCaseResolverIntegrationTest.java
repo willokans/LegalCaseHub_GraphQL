@@ -3,6 +3,7 @@ package com.wyloks.legalcasehub.integrationTest;
 import com.wyloks.legalcasehub.model.LegalCase;
 import com.wyloks.legalcasehub.repository.LegalCaseRepository;
 import com.wyloks.legalcasehub.resolver.LegalCaseResolver;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +25,11 @@ public class LegalCaseResolverIntegrationTest {
     @Autowired
     private LegalCaseResolver resolver;
 
+    @AfterEach
+    void clearUp() {
+        repository.deleteAll();
+    }
+
     @Test
     void testGetLegalCases() {
         repository.save(new LegalCase(null, "Case 1", "Court 1", LocalDate.now(), "Summary 1", List.of("keyword1"), "Full text 1", true));
@@ -40,6 +46,16 @@ public class LegalCaseResolverIntegrationTest {
 
         assertNotNull(legalCase.getId());
         assertEquals("Case 1", legalCase.getTitle());
+    }
+
+    @Test
+    void testCreateCase() {
+        LegalCase legalCase = new LegalCase(null, "Case 1", "Court 1", LocalDate.now(), "Summary 1", List.of("keyword1"), "Full text 1", true);
+        resolver.createLegalCase(legalCase);
+
+        assertNotNull(legalCase.getId());
+        assertEquals("Case 1", legalCase.getTitle());
+        repository.deleteAll();
     }
 
     @Test
