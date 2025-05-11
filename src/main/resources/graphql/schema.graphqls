@@ -1,0 +1,40 @@
+type LegalCase {
+    id: ID!
+    title: String
+    court: String
+    date: String
+    summary: String
+    keywords: [String]
+    fullText: String
+    isPublic: Boolean
+    }
+
+type Query {
+    getLegalCase: [LegalCase]
+    getCaseById(id: ID!): LegalCase
+}
+
+type Mutation {
+    createLegalCase(
+        title: String
+        court: String
+        date: String
+        summary: String
+        keywords: [String]
+        fullText: String
+        isPublic: Boolean
+    ): LegalCase
+
+    updateLegalCase(
+        id: ID!
+        title: String
+        court: String
+        date: String
+        summary: String
+        keywords: [String]
+        fullText: String
+        isPublic: Boolean
+    ): LegalCase
+
+    deleteLegalCase(id: ID!): Boolean
+}
