@@ -4,10 +4,12 @@ import com.wyloks.legalcasehub.model.LegalCase;
 import com.wyloks.legalcasehub.repository.LegalCaseRepository;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import graphql.kickstart.tools.GraphQLQueryResolver;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Component
 public class LegalCaseResolver implements GraphQLQueryResolver, GraphQLMutationResolver {
 
     private final LegalCaseRepository repository;
